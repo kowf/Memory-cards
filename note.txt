@@ -1,0 +1,72 @@
+//list of state
+revealed: array(16).fill(false)
+revealCount: 0 //up to 2
+score: 0
+pairsLeft: 8
+won: false
+revealedCards: Array(2).fill({id: null, color: 0})
+
+//list of action
+reveal a card
+add/ reset revealCount
+add score (will add negative)
+reduce pairsLeft
+toggle won
+append/clear revealedCards
+
+
+onTouch (id, color)
+    if revealed return
+    prevState.flipCount + 1
+    setState revealed[id] = true)
+    if flipCount === 2
+        wait 1 sec
+        if (revealedCards.every((item)=>{ return item.color === revealedCards[0].color}))
+            score + 5
+            pairLeft--
+            revealCount = 0
+            remove lastCard (id)
+            remove currentCard (id)
+            if pairLeft === 0 
+                won = true
+                register()
+        else 
+            score--
+            set revealed[id] false
+    else 
+        set revealed[id] true
+        lastCard = {id, color}
+
+
+register
+    alert ask input name
+    send name, score to db
+
+showHighScore
+    display entries in db, sorted by score, display rank (index), name, score
+
+
+//TO LEARN
+Redux
+alert prompt user input
+Firebase
+switch to a page
+
+
+//remove card
+ReactDOM.unmountComponentAtNode(container)
+map when render, if display is false, feed it with null
+unmount() {
+    card[id].unmount());
+      render: function() {
+    var map = this.state.showMap ? <MapView style={styles.map}/> : null;
+    return (
+      <View style={styles.container}>
+        [..]
+        {map}
+      </View>
+    );
+  }
+
+use amp to generate gamecard
+android emulator update adb

@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "Colour Memory",
+    "slug": "ColourMemory",
+    "privacy": "public",
+    "sdkVersion": "34.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "./assets/AppIcon.png",
+    "splash": {
+      "image": "./assets/AppIcon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1685f4"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}
