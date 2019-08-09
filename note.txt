@@ -11,9 +11,10 @@ reveal a card
 add/ reset revealCount
 add score (will add negative)
 reduce pairsLeft
-toggle won
 append/clear revealedCards
 
+
+reset game => rand cards, cover all card, reset score, pairleft, set won false, 
 
 onTouch (id, color)
     if revealed return
