@@ -5,13 +5,15 @@ import { ScreenOrientation } from 'expo';
 
 import Header from './components/Header';
 import Game from './components/Game/Game';
+
 import { connect } from 'react-redux'
 
-const mapStateToProps = (state) => ({
-  todos: state.todos,
-})
 
-export default class Main extends Component {
+const mapStateToProps = (state) => ({
+  state: state,
+});
+
+class Main extends Component {
   render() {
     return (
       <View style={styles.app}>
@@ -29,4 +31,6 @@ const styles = StyleSheet.create({
   }
 });
 
-//export default connect(mapStateToProps)(App);
+
+
+export default connect(mapStateToProps)(Main);
