@@ -1,13 +1,18 @@
 import React, {Component} from 'react';
 import {StyleSheet, Image, Text, View, Button} from 'react-native';
+import { connect } from 'react-redux';
 
-export default class Header extends React.Component {
+const mapStateToProps = (state) => ({
+  state: state,
+});
+
+class Header extends React.Component {
   render(){
     
     return (
       <View style={styles.header}>
           <Image style={styles.icon} source={require('./../assets/AppIcon.png')}/>
-          <Text style = {styles.score}>0</Text>
+          <Text style = {styles.score}>{this.props.state.score}</Text>
           <View style = {styles.highscore}>
             <Button title="High score" color="navy" acccessibilityLabel="See the high score list"/>
           </View>  
@@ -38,3 +43,5 @@ const styles = StyleSheet.create({
     flex:1
   },
 });
+
+export default connect(mapStateToProps)(Header);

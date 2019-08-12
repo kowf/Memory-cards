@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, Image, Alert, TouchableHighlight, Text} from 'react-native';
+import {View, StyleSheet, Image, Alert, TouchableHighlight, Text} from 'react-native';
+
 
 const colorPath = {
   1: require('./../../assets/1.blue.jpg'),
@@ -15,7 +16,9 @@ const colorPath = {
 function GameCards (props){
     return (
       <TouchableHighlight style={styles.card}  onPress={() => {props.handleTouch(props.id,props.color)}}>
-        <Image source={colorPath[props.color]} />
+        { props.visible[props.id] ? 
+        <Image source = { props.revealed[props.id] ? colorPath[props.color] : require('./../../assets/Cardfacing_down.jpg') } /> :
+        <Text></Text>}
       </TouchableHighlight>
     );
 }
