@@ -41,17 +41,23 @@ class Main extends Component {
       headerRight: (
         <HighScore nav = {navigation} />
       ),
-      title: navigation.getParam('title', 0),
+      title: navigation.getParam('title', '0'),
       headerTitleStyle : {textAlign: 'center', alignSelf:'center', flex: 1},
     }
   };
 
   componentWillMount(){
-    this.props.navigation.setParams({ 'title': this.props.title });
+    this.props.navigation.setParams({ 'title': this.props.title.toString() });
+  }
+
+  componentDidUpdate(){
+    if(this.props.navigation.getParam('title', '0') != this.props.title.toString()){
+      console.log("hi");
+      this.props.navigation.setParams({ 'title': this.props.title.toString() });
+    }
   }
 
   render() {
-    //this.props.navigation.setParams({ 'title': this.props.title });
     return (
       <View style={styles.app}>
         <Game />
