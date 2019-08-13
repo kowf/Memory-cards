@@ -1,17 +1,31 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
-export default class Score extends React.Component {
+export default class AskName extends React.Component {
     static navigationOptions = {
         headerLeft: (<View></View>)
     };
+    constructor(props){
+        super(props);
+        this.state = {
+            name: '',
+        }
+    }
   render() {
+    const score = this.props.navigation.getParam('score', '-999');
     return (
       <View style={ styles.container }>
-          <Text>hello</Text>
+          <Text>You scored {score} </Text>
+          <TextInput
+          autoFocus = {true}
+          style = {{borderColor: 'gray', borderWidth: 1}}
+          placeholder = "Enter you name here"
+          onChangeText = {(text) => this.setState({name: text})}
+          value = {this.state.name}
+        />
           <Button
-          title="Submit"
-          onPress={() =>
+          title = "Submit"
+          onPress = {() =>
             this.props.navigation.navigate('Main')
           }
         />

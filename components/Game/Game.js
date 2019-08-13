@@ -41,11 +41,10 @@ class Game extends React.Component {
           this.props.dispatch(actionCreators.removePair(1));
           if (this.props.state.pairCount === 0 ){
             //win
-            //this.props.dispatch(actionCreators.score(-this.props.state.score));
+            this.props.nav.navigate('AskName', {score: this.props.state.score});
             this.props.dispatch(actionCreators.resetGame());
             this.props.dispatch(actionCreators.setColor(this.initColor()));
             this.render();
-            this.props.nav.navigate('AskName');
           }
           inProgress = false;     
         },1000);
