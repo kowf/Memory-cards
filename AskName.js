@@ -3,14 +3,19 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default class Score extends React.Component {
     static navigationOptions = {
-        title: 'High Score',
+        headerLeft: (<View></View>)
     };
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Score board</Text>
+      <View style={ styles.container }>
+          <Text>hello</Text>
+          <Button
+          title="Submit"
+          onPress={() =>
+            this.props.navigation.navigate('Main')
+          }
+        />
       </View>
-      
     );
   }
 }

@@ -1,10 +1,11 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Main from './Main';
 import Score from './Score';
-
+import AskName from './AskName';
 const AppNavigator = createStackNavigator({
     Main: Main,
     Score: Score,
+    AskName: AskName,
   },
   {
     initialRouteName: 'Main',

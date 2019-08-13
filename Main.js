@@ -52,7 +52,6 @@ class Main extends Component {
 
   componentDidUpdate(){
     if(this.props.navigation.getParam('title', '0') != this.props.title.toString()){
-      console.log("hi");
       this.props.navigation.setParams({ 'title': this.props.title.toString() });
     }
   }
@@ -60,7 +59,7 @@ class Main extends Component {
   render() {
     return (
       <View style={styles.app}>
-        <Game />
+        <Game nav = {this.props.navigation}/>
       </View>
     );
   }

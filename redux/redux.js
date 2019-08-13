@@ -1,5 +1,4 @@
-
-
+import initalState from './initalState';
 const types = {
     INIT_COLOR: 'INIT_COLOR',
     ADD_FLIP_COUNT: 'ADD_FLIP_COUNT',
@@ -8,6 +7,7 @@ const types = {
     HIDE: 'HIDE',
     SCORE: 'SCORE',
     REMOVE_PAIR: 'REMOVE_PAIR',
+    RESET_GAME: 'RESET_GAME' 
   }
 
 export const actionCreators = {
@@ -52,6 +52,11 @@ export const actionCreators = {
       type: types.REMOVE_PAIR,
       payload: amount
     }
+  },
+  resetGame: () => {
+    return {
+      type: types.RESET_GAME
+    }
   }
 }
 
@@ -68,8 +73,7 @@ export const reducer = (state, action) => {
       return {...state, revealed: updateReveal};
     case types.SET_LAST_CARD:
       return {...state, lastCard: action.payload}
-    case types.HIDE:
-      
+    case types.HIDE:      
       const updateVisible = state.visible.map(
         (item, i) => i === action.payload ? false : item)
       return {...state, visible: updateVisible};
@@ -77,6 +81,15 @@ export const reducer = (state, action) => {
       return {...state, score: state.score + action.payload};
     case types.REMOVE_PAIR:
       return {...state, pairCount: state.pairCount - action.payload}
+    case types.RESET_GAME:
+      
+      return {cardsColor: Array(16).fill(null),
+        revealed: Array(16).fill(false),
+        visible: Array(16).fill(true),
+        flipCount: 1,
+        lastCard: {id: 20, color: 20},
+        score: 0,
+        pairCount: 8};
     default:
       return state;
   }
