@@ -1,0 +1,50 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add react-native-gesture-handler react-native-reanimated
+
+PATH: 
+  C:\ProgramData\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Users\KathyKo\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\KathyKo\AppData\Local\Programs\Python\Python37-32\;C:\Users\KathyKo\AppData\Local\Programs\Python\Launcher\;C:\Ruby26-x64\bin;C:\Users\KathyKo\AppData\Local\Microsoft\WindowsApps;C:\Users\KathyKo\AppData\Roaming\npm;C:\Users\KathyKo\AppData\Local\Yarn\bin;C:\Users\KathyKo\AppData\Local\Programs\Microsoft VS Code\bin
+
+Yarn version: 
+  1.16.0
+
+Node version: 
+  10.15.2
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, unlink 'C:\Users\KathyKo\Desktop\ColourMemory\node_modules\core-js-pure\internals'
+
+npm manifest: 
+  {
+    "main": "node_modules/expo/AppEntry.js",
+    "scripts": {
+      "start": "expo start",
+      "android": "expo start --android",
+      "ios": "expo start --ios",
+      "web": "expo start --web",
+      "eject": "expo eject"
+    },
+    "dependencies": {
+      "expo": "^34.0.1",
+      "react": "16.8.3",
+      "react-dom": "^16.8.6",
+      "react-native": "https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz",
+      "react-native-fs": "^2.14.1",
+      "react-native-web": "^0.11.4",
+      "react-navigation": "^3.11.1",
+      "react-redux": "^7.1.0",
+      "redux": "^4.0.4"
+    },
+    "devDependencies": {
+      "babel-preset-expo": "^6.0.0"
+    },
+    "private": true
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

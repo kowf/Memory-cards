@@ -8,13 +8,18 @@ const mapStateToProps = (state) => ({
 
 class Header extends React.Component {
   render(){
-    
     return (
       <View style={styles.header}>
           <Image style={styles.icon} source={require('./../assets/AppIcon.png')}/>
           <Text style = {styles.score}>{this.props.state.score}</Text>
           <View style = {styles.highscore}>
-            <Button title="High score" color="navy" acccessibilityLabel="See the high score list"/>
+            <Button 
+            title="High score" 
+            color="navy"
+            onPress={() =>
+              this.props.nav.navigate('Score')
+            } 
+            acccessibilityLabel="See the high score list"/>
           </View>  
       </View>
     );

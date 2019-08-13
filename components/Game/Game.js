@@ -8,13 +8,14 @@ const mapStateToProps = (state) => ({
   state: state,
 });
 
+var inProgress = false;
+
 class Game extends React.Component {
   handleTouch = (id, color) => {
-    //DEBUG
-    // if (this.props.state.revealed[id]) {
-    //   return;
-    // }
     
+    if (this.props.state.revealed[id] || !this.props.state.visible[id] || inProgress) {
+      return;
+    }
     this.props.dispatch(actionCreators.addFlipCount(1));
     this.props.dispatch(actionCreators.reveal(id, true));
     //last card = before this touch
@@ -23,13 +24,16 @@ class Game extends React.Component {
       this.props.dispatch(actionCreators.addFlipCount(-2));
       if (this.props.state.lastCard.color !== color) {
         //failed: cover both cards
+        inProgress = true;
         setTimeout(() => {
           this.props.dispatch(actionCreators.score(-1));
           this.props.dispatch(actionCreators.reveal(this.props.state.lastCard.id,false));
           this.props.dispatch(actionCreators.reveal(id, false)); 
+          inProgress = false;
         },1000);
       } else {
         //scores: hide both cards
+        inProgress = true;
         setTimeout(() => {
           this.props.dispatch(actionCreators.score(5));
           this.props.dispatch(actionCreators.hide(this.props.state.lastCard.id));
@@ -39,8 +43,9 @@ class Game extends React.Component {
             //win
 
           }
+          inProgress = false;     
         },1000);
-        
+           
         this.render();
       }
     }
