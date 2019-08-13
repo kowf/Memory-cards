@@ -21,6 +21,21 @@ class Logo extends React.Component {
   }
 }
 
+class HighScore extends React.Component {
+  render(){
+    return (
+      <Button 
+            style = {styles.highscore}
+            title="High score" 
+            color="navy"
+            onPress={() =>
+              this.props.nav.navigate('Score')
+            } 
+            acccessibilityLabel="See the high score list"
+          />
+    )
+  }
+}
 
 class CurrentScore extends React.Component {
   render(){
@@ -34,23 +49,16 @@ class Main extends Component {
   static navigationOptions = ({navigation}) => {
     return {
       headerTitle: <Logo />,
+      headerRightContainerStyle: {paddingRight: 10, paddingLeft: 10},
       headerRight: (
-        <Button 
-          style = {{right: 10}}
-          title="High score" 
-          color="navy"
-          onPress={() =>
-            navigation.navigate('Score')
-          } 
-          acccessibilityLabel="See the high score list"
-        />
+        <HighScore nav = {navigation} />
       ),
+      
     }
   };
   render() {
     return (
       <View style={styles.app}>
-        <Header nav = {this.props.navigation} />
         <Game />
       </View>
     );
@@ -73,7 +81,7 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   highscore: {
-    flex:1
+    marginRight: 10
   },
 });
 
