@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import {StyleSheet, TouchableWithoutFeedback, Image, Text, View, Button } from 'react-native';
+import {StyleSheet, Image, Text, View, Button } from 'react-native';
 import Constants from 'expo-constants';
 import { ScreenOrientation } from 'expo';
-
-import Header from './components/Header';
 import Game from './components/Game/Game';
-
-import { connect } from 'react-redux'
-
+import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => ({
-  state: state,
+  title: state.score,
 });
 
 class Logo extends React.Component {
@@ -37,26 +33,25 @@ class HighScore extends React.Component {
   }
 }
 
-class CurrentScore extends React.Component {
-  render(){
-    return (
-      <Text style = {styles.score}>{this.props.state.score}</Text>
-    )
-  }
-}
-
 class Main extends Component {
   static navigationOptions = ({navigation}) => {
     return {
-      headerTitle: <Logo />,
+      headerLeft: <Logo />,
       headerRightContainerStyle: {paddingRight: 10, paddingLeft: 10},
       headerRight: (
         <HighScore nav = {navigation} />
       ),
-      
+      title: navigation.getParam('title', 0),
+      headerTitleStyle : {textAlign: 'center', alignSelf:'center', flex: 1},
     }
   };
+
+  componentWillMount(){
+    this.props.navigation.setParams({ 'title': this.props.title });
+  }
+
   render() {
+    //this.props.navigation.setParams({ 'title': this.props.title });
     return (
       <View style={styles.app}>
         <Game />
@@ -75,15 +70,9 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
   },
-  score:{
-    flex:1,
-    textAlign: 'center',
-    color: 'white'
-  },
   highscore: {
     marginRight: 10
   },
 });
-
 
 export default connect(mapStateToProps)(Main);
