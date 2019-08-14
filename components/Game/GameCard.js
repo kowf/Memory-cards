@@ -18,8 +18,8 @@ function GameCards (props){
       <TouchableHighlight style={styles.card}  onPress={() => {props.handleTouch(props.id,props.color)}}>
         { props.visible[props.id] ? 
         //FOR DEBUG
-        //<Text style = {{fontSize: 20}}>{props.color}</Text>:
-         <Image source = { props.revealed[props.id] ? colorPath[props.color] : require('./../../assets/Cardfacing_down.jpg') } /> :
+        <Text style = {{fontSize: 20}}>{props.color}</Text>:
+         //<Image source = { props.revealed[props.id] ? colorPath[props.color] : require('./../../assets/Cardfacing_down.jpg') } /> :
         <Text></Text>}
       </TouchableHighlight>
     );
@@ -28,7 +28,7 @@ function GameCards (props){
 const styles = StyleSheet.create({
   card:{
     margin: 1,
-    flex: 1
+    flex: 1,
   }
 });
 export default GameCards;
