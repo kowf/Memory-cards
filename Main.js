@@ -59,6 +59,7 @@ class Main extends Component {
   render() {
     return (
       <View style={styles.app}>
+        <Button title = 'here' onPress = {() => this.props.navigation.navigate('AskName', {score: this.props.title})}></Button>
         <Game nav = {this.props.navigation}/>
       </View>
     );
