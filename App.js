@@ -6,11 +6,11 @@ import AppNav from './AppNavigator';
 export default class ColourMemory extends Component {
   render() {
     return (
-      <Provider store = {store}>
+      <Provider store={store}>
         <AppNav />
       </Provider>
-        );
-      }
-    }
-        
-      
+    );
+  }
+}
+
+

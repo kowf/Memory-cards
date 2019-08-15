@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {View, StyleSheet, Image, Alert, TouchableHighlight, Text} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Image, TouchableHighlight, Text } from 'react-native';
 
 
 const colorPath = {
@@ -13,20 +13,20 @@ const colorPath = {
   8: require('./../../assets/8.yellow.jpg')
 }
 
-function GameCards (props){
-    return (
-      <TouchableHighlight style={styles.card}  onPress={() => {props.handleTouch(props.id,props.color)}}>
-        { props.visible[props.id] ? 
+function GameCards(props) {
+  return (
+    <TouchableHighlight style={styles.card} onPress={() => { props.handleTouch(props.id, props.color) }}>
+      {props.visible[props.id] ?
         //FOR DEBUG
-        //<Text style = {{fontSize: 20}}>{props.color}</Text>:
-        <Image source = { props.revealed[props.id] ? colorPath[props.color] : require('./../../assets/Cardfacing_down.jpg') } /> :
+        <Text style = {{fontSize: 20}}>{props.color}</Text>:
+        // <Image source={props.revealed[props.id] ? colorPath[props.color] : require('./../../assets/Cardfacing_down.jpg')} /> :
         <Text></Text>}
-      </TouchableHighlight>
-    );
+    </TouchableHighlight>
+  );
 }
 
 const styles = StyleSheet.create({
-  card:{
+  card: {
     margin: 1,
     flex: 1,
   }
