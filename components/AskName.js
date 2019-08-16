@@ -33,7 +33,8 @@ export default class AskName extends React.Component {
         newScore.push(this.state.score);
         const distinctScore = [...new Set(newScore)];
         distinctScore.sort((a, b) => b - a);
-        this.setState({ rank: distinctScore.findIndex(item => item === this.state.score) + 1 });        
+        const rank = distinctScore.findIndex(item => item === this.state.score);
+        this.setState({ rank: rank + 1 });        
     } catch (e) {
       console.error('Failed to fetch list.')
     }
@@ -74,7 +75,6 @@ export default class AskName extends React.Component {
         <Text style={styles.score} >You scored {score} </Text>
         <Text style={styles.rank}>Rank {this.state.rank}</Text>
         <TextInput
-          autoFocus={true}
           textContentType='name'
           style={styles.input}
           placeholder="Enter you name here"

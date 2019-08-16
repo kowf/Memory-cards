@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, Text, View, Button } from 'react-native';
-import Constants from 'expo-constants';
-import { ScreenOrientation } from 'expo';
+import { StyleSheet, Image, View, Button } from 'react-native';
 import Game from './components/Game/Game';
 import { connect } from 'react-redux';
 
@@ -68,7 +66,6 @@ class Main extends Component {
 
 const styles = StyleSheet.create({
   app: {
-    //paddingTop: Constants.statusBarHeight,
     flex: 1
   },
   icon: {
