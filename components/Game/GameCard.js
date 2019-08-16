@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Image, TouchableHighlight, Text, Dimensions } from 'react-native';
 
-const {height, width} = Dimensions.get('window');
-const cardHeight = ( height > width ? width : height )/ 4 - 60;
+const { height, width } = Dimensions.get('window');
+const cardHeight = height > width ? width / 4 - 10 : (height - 100) / 4 - 10;
 const colorPath = {
   1: require('./../../assets/1.blue.jpg'),
   2: require('./../../assets/2.brown.jpg'),

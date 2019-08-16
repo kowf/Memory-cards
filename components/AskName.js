@@ -14,6 +14,7 @@ export default class AskName extends React.Component {
       name: '',
       rank: 0,
       error: false,
+      errorMsg: '',
       score: this.props.navigation.getParam('score')
     }
   }
@@ -52,9 +53,14 @@ export default class AskName extends React.Component {
   }
 
   onChangeText = (text) => {
-    if (/[^a-z|\s]/i.test(text) || /^\s/.test(text)) {
+    if (/[^a-z|\s]/i.test(text)) {
       this.setState({ error: true });
-    } else this.setState({ error: false });
+      this.setState({errorMsg: '50rry, @lphabets only'})
+    } else if (/^\s/.test(text)) {
+      this.setState({ error: true });
+      this.setState({errorMsg: "Don't start your name with space"})
+    }
+    else this.setState({ error: false });
     this.setState({ name: text });
   }
 
@@ -82,10 +88,11 @@ export default class AskName extends React.Component {
           onSubmitEditing={() => this.handleSubmit()}
           value={this.state.name}
         />
-        {this.state.error && <Text style={styles.error}>error</Text>}
+        {this.state.error && <Text style={styles.error}>{this.state.errorMsg}</Text>}
         <View style={styles.submit}>
           <Button
             title="Submit"
+            color={this.state.error && '#c9c9c9'}
             onPress={() => this.handleSubmit()}
           />
         </View>
@@ -119,8 +126,5 @@ const styles = StyleSheet.create({
   },
   error: {
     color: 'red',
-  },
-  rank: {
-
   }
 });
