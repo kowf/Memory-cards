@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet, Image, TouchableHighlight, Text, Dimensions } from 'react-native';
-
-const { height, width } = Dimensions.get('window');
-const cardHeight = height > width ? width / 4 - 10 : (height - 100) / 4 - 10;
 const colorPath = {
   1: require('./../../assets/1.blue.jpg'),
   2: require('./../../assets/2.brown.jpg'),
@@ -14,7 +11,11 @@ const colorPath = {
   8: require('./../../assets/8.yellow.jpg')
 }
 
+var { height, width } = Dimensions.get('window');
+var cardHeight = height > width ? width / 4 - 10 : (height - 100) / 4 - 10;
 function GameCards(props) {
+   let { height, width } = Dimensions.get('window');
+   cardHeight = height > width ? width / 4 - 10 : (height - 100) / 4 - 10;
   return (
     <TouchableHighlight style={styles.card} onPress={() => { props.handleTouch(props.id, props.color) }}>
       {props.visible ?

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
+import { StyleSheet, FlatList, Text, AsyncStorage, View } from 'react-native';
 
 export default class Score extends React.Component {
   static navigationOptions = {
@@ -38,39 +38,47 @@ export default class Score extends React.Component {
 
   render() {
     const renderScore = this.state.list.map((item, i) => {
-      if (i > 10) { 
-        return null; 
+      
+      if (i > 10) {
+        return null;
       }
       return (
-        <View key={i} style={styles.row}>
-          <Text>{this.state.score.findIndex(v => v === item.score) + 1}</Text>
-          <Text>{item.name}</Text>
-          <Text>{item.score}</Text>
-        </View>
+        {
+          rank: this.state.score.findIndex(v => v === item.score) + 1,
+          name: item.name,
+          score: item.score
+        }
       )
-  })
-  return(
-      <View style = { styles.container } >
-      <View style={styles.row}>
-        <Text>Rank</Text>
-        <Text>Name</Text>
-        <Text>Score</Text>
-      </View>
-        { renderScore }
-      </View>
+    })
+    return (
+      <FlatList 
+        contentContainerStyle={{flexGrow: 1, justifyContent:'center', alignItems:'center', }}
+        data={renderScore}
+        keyExtractor = {(item, key) => (key)}
+        renderItem={
+          ({ item }) => {
+            return (
 
+                <Text>{item.score}{item.name}</Text>
+
+            )
+          }
+        }
+      />
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+  header: {
+    backgroundColor: '#fafafa'
   },
   row: {
     flexDirection: 'row',
+    flex: 1, 
+    justifyContent:'space-around', 
+    alignItems: 'space-around', 
+    alignItems: 'flex-start',
+    
   }
 });
