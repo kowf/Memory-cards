@@ -12,7 +12,8 @@ const colorPath = {
 }
 
 var { height, width } = Dimensions.get('window');
-var cardHeight = height > width ? width / 4 - 10 : (height - 100) / 4 - 10;
+//header 50, margin sum 25
+var cardHeight = height > width ? (width - 150) / 4 : (height - 150) / 4;
 function GameCards(props) {
    let { height, width } = Dimensions.get('window');
    cardHeight = height > width ? width / 4 - 10 : (height - 100) / 4 - 10;

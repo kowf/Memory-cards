@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, FlatList, Text, AsyncStorage, View, Dimensions } from 'react-native';
-var { width } = Dimensions.get('window');
-var entriesWidth = width / 3 ;
+const { height, width } = Dimensions.get('window');
+const entriesWidth = width / 3 ;
+const entriesHeight = ( height - 150 ) / 10;
 export default class Score extends React.Component {
   static navigationOptions = {
     title: 'High Score',
@@ -38,7 +39,7 @@ export default class Score extends React.Component {
   }
 
   render() {
-    const renderScore = this.state.list.map((item, i) => {
+    const renderScore = this.state.list.slice(0,10).map((item, i) => {
       return (
         { 
           index: i,
@@ -93,6 +94,8 @@ const styles = StyleSheet.create({
   entries: {
     paddingLeft: entriesWidth / 3 + 5,
     paddingTop: 5,
+    height: entriesHeight,
     width: entriesWidth,
+    fontSize: 20,
   }
 });
