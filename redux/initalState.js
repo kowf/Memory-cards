@@ -5,7 +5,7 @@ const initalState = {
     flipCount: 1,
     lastCard: { id: 20, color: 20 },
     score: 0,
-    pairCount: 8
+    pairCount: 8,
 }
 
 export {initalState};

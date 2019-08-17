@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, AsyncStorage, KeyboardAvoidingView} from 'react-native';
 import Constants from 'expo-constants';
 export default class AskName extends React.Component {
 
-  // static navigationOptions = {
-  //     header: null
-  // };
+  static navigationOptions = {
+      header: null
+  };
 
   constructor(props) {
     super(props);
@@ -65,19 +65,18 @@ export default class AskName extends React.Component {
   }
 
   handleSubmit() {
-    if (this.state.error) {
-      return
-    }
     if (this.state.name === '') {
-      this.setState({ name: 'unnamed' });
+      this.setState({ error: true });
+      this.setState({ errorMsg: 'Please enter a name' });
+    } else if (!this.state.error) {
+      this.save();
+      this.props.navigation.navigate('Main');
     }
-    this.save();
-    this.props.navigation.navigate('Main');
   }
   render() {
     const score = this.props.navigation.getParam('score')
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <Text style={styles.score} >You scored {score} </Text>
         <Text style={styles.rank}>Rank {this.state.rank}</Text>
         <TextInput
@@ -96,11 +95,11 @@ export default class AskName extends React.Component {
             onPress={() => this.handleSubmit()}
           />
         </View>
-        <Button
+        {/* <Button
           title="clear mem"
           onPress={() => {AsyncStorage.clear(); this.setState({list: [], rank: 0})}}
-        />
-      </View>
+        /> */}
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -110,11 +109,11 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
     flex: 1,
     backgroundColor: '#fff',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   score: {
     fontSize: 20,
-    paddingTop: 50
   },
   input: {
     height: 40,
@@ -122,7 +121,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   submit: {
-    margin: 10
+    margin: 10,
   },
   error: {
     color: 'red',

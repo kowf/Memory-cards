@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import GameCard from './GameCard';
-import { actionCreators } from './../../redux/redux';
+import { actionCreators } from './../../redux/actions';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => ({

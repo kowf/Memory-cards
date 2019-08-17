@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
-
+import { StyleSheet, FlatList, Text, AsyncStorage, View, Dimensions } from 'react-native';
+var { width } = Dimensions.get('window');
+var entriesWidth = width / 3 ;
 export default class Score extends React.Component {
   static navigationOptions = {
     title: 'High Score',
@@ -38,39 +39,60 @@ export default class Score extends React.Component {
 
   render() {
     const renderScore = this.state.list.map((item, i) => {
-      if (i > 10) { 
-        return null; 
-      }
       return (
-        <View key={i} style={styles.row}>
-          <Text>{this.state.score.findIndex(v => v === item.score) + 1}</Text>
-          <Text>{item.name}</Text>
-          <Text>{item.score}</Text>
-        </View>
+        { 
+          index: i,
+          rank: (this.state.score.findIndex(v => v === item.score) + 1).toString(),
+          name: item.name,
+          score: item.score.toString()
+        }
       )
-  })
-  return(
-      <View style = { styles.container } >
-      <View style={styles.row}>
-        <Text>Rank</Text>
-        <Text>Name</Text>
-        <Text>Score</Text>
-      </View>
-        { renderScore }
-      </View>
-
+    })
+    return (
+      <FlatList 
+        ListHeaderComponent={() => { return (
+                      <View style={styles.headerRow}>
+                        <Text style={styles.header}>Rank</Text> 
+                        <Text style={styles.header}>Name</Text> 
+                        <Text style={styles.header}>Score</Text>
+                      </View>)}}
+        keyExtractor={(item) => item.index.toString()}
+        data={renderScore}
+        renderItem={({item}) => 
+        <View style={styles.row}>
+          <Text style={styles.entries}>{item.rank}</Text>
+          <Text style={styles.entries}>{item.name}</Text>
+          <Text style={styles.entries}>{item.score}</Text>
+        </View>}
+      />
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+  headerRow: {
+    backgroundColor: '#fafafa',
+    paddingVertical: 10,
+    flexDirection: 'row',
+    flex: 1, 
+    justifyContent:'space-around', 
+    alignItems: 'baseline',
+  },
+  header: {
+    width: entriesWidth,
+    fontSize: 20,
+    fontWeight: 'bold',
+    paddingLeft: entriesWidth / 3,
   },
   row: {
     flexDirection: 'row',
+    flex: 1, 
+    justifyContent:'space-around', 
+    alignItems: 'baseline',
+  },
+  entries: {
+    paddingLeft: entriesWidth / 3 + 5,
+    paddingTop: 5,
+    width: entriesWidth,
   }
 });

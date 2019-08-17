@@ -57,8 +57,8 @@ class Main extends Component {
   render() {
     return (
       <View style={styles.app}>
-        <Button title='here' onPress={() => this.props.navigation.navigate('AskName', { score: this.props.title })}></Button>
         <Game nav={this.props.navigation} />
+        <Button title='End game' onPress={() => this.props.navigation.navigate('AskName', { score: this.props.title })}></Button>
       </View>
     );
   }
@@ -66,7 +66,7 @@ class Main extends Component {
 
 const styles = StyleSheet.create({
   app: {
-    flex: 1
+    flex: 1,
   },
   icon: {
     marginLeft: 10,
@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
     height: 50,
   },
   highscore: {
-    marginRight: 10
-  },
+    marginRight: 10,
+  }
 });
 
 export default connect(mapStateToProps)(Main);
