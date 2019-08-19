@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, View, Dimensions } from 'react-native';
 import GameCard from './GameCard';
 import { actionCreators } from './../../redux/actions';
 import { connect } from 'react-redux';
@@ -11,6 +11,19 @@ const mapStateToProps = (state) => ({
 var inProgress = false;
 
 class Game extends React.Component {
+
+  constructor (props) {
+    let {width, height} = Dimensions.get('window')
+    super(props)
+    this.state = {dimensions: {width, height}}
+  }
+
+  onLayout = event => {
+    let {width, height} = Dimensions.get('window')
+    this.setState({dimensions: {width, height}})
+    console.log("width "+width+" height "+height);
+  }
+
   handleTouch = (id, color) => {
 
     if (this.props.state.revealed[id] || !this.props.state.visible[id] || inProgress) {
@@ -79,6 +92,10 @@ class Game extends React.Component {
   render() {
     const cardList = this.props.state.cardsColor.map((color, i) => { return { key: i, value: color } });
     return (
+      <View 
+        onLayout={(e)=> this.onLayout(e)}
+        style={{flex:1, justifyContent:'center', alignItems:'center', }}
+      >
         <FlatList
           contentContainerStyle={{flexGrow: 1, justifyContent:'center', alignItems:'center', }}
           data={cardList}
@@ -93,11 +110,13 @@ class Game extends React.Component {
                   visible={this.props.state.visible[item.key]}
                   handleTouch={this.handleTouch}
                   color={item.value}
+                  size={this.state.dimensions}
                 />
               )
             }
           }
         />
+        </View>
     );
   }
 }

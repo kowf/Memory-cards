@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, TouchableHighlight, Text, Dimensions } from 'react-native';
+import { StyleSheet, Image, TouchableHighlight, Text } from 'react-native';
 const colorPath = {
   1: require('./../../assets/1.blue.jpg'),
   2: require('./../../assets/2.brown.jpg'),
@@ -11,18 +11,18 @@ const colorPath = {
   8: require('./../../assets/8.yellow.jpg')
 }
 
-var { height, width } = Dimensions.get('window');
-//header 50, margin sum 25
-var cardHeight = height > width ? (width - 150) / 4 : (height - 150) / 4;
+
 function GameCards(props) {
-   let { height, width } = Dimensions.get('window');
-   cardHeight = height > width ? width / 4 - 10 : (height - 100) / 4 - 10;
+  //                                                  'portrait'                   : 'landscape';
+  const side = props.size.height > props.size.width ? (props.size.width - 50) /4 : (props.size.height - 150) / 4;
+  
   return (
-    <TouchableHighlight style={styles.card} onPress={() => { props.handleTouch(props.id, props.color) }}>
+    <TouchableHighlight 
+    style={styles.card} onPress={() => { props.handleTouch(props.id, props.color) }}>
       {props.visible ?
         //FOR DEBUG
         //<Text style = {{fontSize: 20}}>{props.color}</Text>:
-        <Image style={styles.image} source={props.revealed ? colorPath[props.color] : require('./../../assets/Cardfacing_down.jpg')} /> :
+        <Image style={{width: side, height: side }} source={props.revealed ? colorPath[props.color] : require('./../../assets/Cardfacing_down.jpg')} /> :
         <Text></Text>}
     </TouchableHighlight>
   );
@@ -31,12 +31,7 @@ function GameCards(props) {
 const styles = StyleSheet.create({
   card: {
     margin: 5,
-    height: cardHeight,
-    width: cardHeight,
   },
-  image: {
-    height: cardHeight,
-    width: cardHeight,
-  }
+
 });
 export default GameCards;
