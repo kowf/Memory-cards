@@ -18,7 +18,7 @@ function GameCards(props) {
   
   return (
     <TouchableHighlight 
-    style={styles.card} onPress={() => { props.handleTouch(props.id, props.color) }}>
+    style={{margin: 5, width: side, height: side }} onPress={() => { props.handleTouch(props.id, props.color) }}>
       {props.visible ?
         //FOR DEBUG
         //<Text style = {{fontSize: 20}}>{props.color}</Text>:
@@ -28,10 +28,4 @@ function GameCards(props) {
   );
 }
 
-const styles = StyleSheet.create({
-  card: {
-    margin: 5,
-  },
-
-});
 export default GameCards;
